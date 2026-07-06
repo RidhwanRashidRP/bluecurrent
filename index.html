@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Blue Current is a polished one-page study companion experience designed for fast, modern sharing." />
+    <meta name="theme-color" content="#060d1f" />
+    <title>Blue Current | One-Page Experience</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #060d1f;
+        --panel: rgba(8, 15, 35, 0.82);
+        --panel-strong: rgba(14, 25, 54, 0.95);
+        --text: #f8fbff;
+        --muted: #9db2cf;
+        --accent: #38bdf8;
+        --accent-2: #6366f1;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+        background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.2), transparent 30%), var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+      }
+
+      a { color: inherit; text-decoration: none; }
+
+      .page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 24px 20px 56px;
+      }
+
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0 24px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        box-shadow: 0 12px 30px rgba(56, 189, 248, 0.24);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 18px;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 24px;
+        align-items: center;
+        padding: 30px 0 36px;
+      }
+
+      .hero-card, .info-card, .cta-card {
+        background: var(--panel);
+        border: 1px solid rgba(255,255,255,0.08);
+        backdrop-filter: blur(18px);
+        box-shadow: 0 24px 60px rgba(2, 8, 23, 0.3);
+      }
+
+      .hero-card {
+        padding: 34px;
+        border-radius: 28px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(56, 189, 248, 0.12);
+        color: #8fe6ff;
+        font-size: 0.9rem;
+        margin-bottom: 16px;
+      }
+
+      h1 {
+        font-size: clamp(2.2rem, 4.4vw, 3.6rem);
+        line-height: 1.05;
+        margin: 0 0 16px;
+      }
+
+      .hero p {
+        color: var(--muted);
+        font-size: 1.04rem;
+        line-height: 1.7;
+        margin: 0 0 22px;
+      }
+
+      .actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      button, .ghost-link {
+        border: 0;
+        cursor: pointer;
+        font: inherit;
+      }
+
+      .primary-btn, .secondary-btn {
+        padding: 12px 16px;
+        border-radius: 999px;
+        transition: transform 180ms ease, opacity 180ms ease;
+      }
+
+      .primary-btn {
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        color: white;
+        font-weight: 700;
+      }
+
+      .secondary-btn {
+        background: rgba(255,255,255,0.06);
+        color: var(--text);
+        border: 1px solid rgba(255,255,255,0.1);
+      }
+
+      .primary-btn:hover, .secondary-btn:hover, .ghost-link:hover {
+        transform: translateY(-1px);
+      }
+
+      .hero-visual {
+        border-radius: 28px;
+        padding: 20px;
+        min-height: 320px;
+        background: linear-gradient(160deg, rgba(56, 189, 248, 0.2), rgba(99, 102, 241, 0.2));
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-visual::before, .hero-visual::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(30px);
+        opacity: 0.7;
+      }
+
+      .hero-visual::before {
+        width: 180px;
+        height: 180px;
+        background: rgba(56, 189, 248, 0.4);
+        top: -20px;
+        right: -20px;
+      }
+
+      .hero-visual::after {
+        width: 220px;
+        height: 220px;
+        background: rgba(99, 102, 241, 0.32);
+        bottom: -30px;
+        left: -30px;
+      }
+
+      .chip-stack {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        gap: 14px;
+        margin-top: 24px;
+      }
+
+      .chip {
+        padding: 14px 16px;
+        border-radius: 16px;
+        background: rgba(6, 13, 31, 0.65);
+        border: 1px solid rgba(255,255,255,0.08);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .section-title {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 24px;
+      }
+
+      .info-card {
+        padding: 20px;
+        border-radius: 20px;
+      }
+
+      .info-card h3 {
+        margin: 8px 0 8px;
+      }
+
+      .info-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .cta-card {
+        margin-top: 24px;
+        border-radius: 24px;
+        padding: 28px;
+        text-align: center;
+      }
+
+      .cta-card p {
+        color: var(--muted);
+        max-width: 700px;
+        margin: 10px auto 0;
+        line-height: 1.7;
+      }
+
+      footer {
+        text-align: center;
+        color: var(--muted);
+        padding-top: 20px;
+        font-size: 0.95rem;
+      }
+
+      @media (max-width: 900px) {
+        .hero { grid-template-columns: 1fr; }
+        .grid { grid-template-columns: 1fr; }
+      }
+
+      @media (max-width: 640px) {
+        .page { padding: 18px 14px 40px; }
+        .topbar { flex-direction: column; gap: 10px; align-items: flex-start; }
+        .nav-links { gap: 12px; flex-wrap: wrap; }
+        .hero-card { padding: 24px; }
+        .cta-card { padding: 22px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <a class="brand" href="#top">
+          <span class="brand-mark">✦</span>
+          <span>Blue Current</span>
+        </a>
+        <nav class="nav-links" aria-label="main navigation">
+          <a href="#features">Features</a>
+          <a href="#launch">Launch</a>
+        </nav>
+      </header>
+
+      <main id="top">
+        <section class="hero">
+          <div class="hero-card">
+            <div class="pill">⚡ One-page launch experience</div>
+            <h1>Turn your idea into a polished landing page in one file.</h1>
+            <p>This experience is designed to feel modern, fast, and ready to share without a local dev server. It opens as a clean, single-page site that is easy to host anywhere.</p>
+            <div class="actions">
+              <button class="primary-btn" data-scroll="#launch">Launch Now</button>
+              <button class="secondary-btn" data-scroll="#features">See Features</button>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-label="preview panel">
+            <div class="chip-stack">
+              <div class="chip"><span>Study Flow</span><strong>Ready</strong></div>
+              <div class="chip"><span>Task Tracker</span><strong>Live</strong></div>
+              <div class="chip"><span>Single File</span><strong>Hosted</strong></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="features" class="grid" aria-label="key features">
+          <article class="info-card">
+            <h3>Instantly shareable</h3>
+            <p>Built as a single page with no local app dependency, so it works well for demos, portfolios, and quick launches.</p>
+          </article>
+          <article class="info-card">
+            <h3>Clean structure</h3>
+            <p>The layout is simple, focused, and designed to feel like a premium product page rather than a development preview.</p>
+          </article>
+          <article class="info-card">
+            <h3>Easy to deploy</h3>
+            <p>Drop it onto static hosting or a simple web server and it will open as a complete experience with no localhost friction.</p>
+          </article>
+        </section>
+
+        <section id="launch" class="cta-card">
+          <h2 class="section-title">Ready to go live</h2>
+          <p>Use this page as your public-facing entry point, then publish the build output to your preferred static host. It is now shaped as a single, polished page instead of a local development view.</p>
+        </section>
+      </main>
+
+      <footer>© <span id="year"></span> Blue Current. All rights reserved.</footer>
+    </div>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+      document.querySelectorAll('[data-scroll]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const target = button.getAttribute('data-scroll');
+          if (target) {
+            document.querySelector(target)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
