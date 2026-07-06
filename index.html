@@ -1,333 +1,306 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Blue Current is a polished one-page study companion experience designed for fast, modern sharing." />
-    <meta name="theme-color" content="#060d1f" />
-    <title>Blue Current | One-Page Experience</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#021025" />
+    <title>Blue Current — Your Polytechnic Flow, Simplified.</title>
     <style>
-      :root {
-        color-scheme: dark;
-        --bg: #060d1f;
-        --panel: rgba(8, 15, 35, 0.82);
-        --panel-strong: rgba(14, 25, 54, 0.95);
-        --text: #f8fbff;
-        --muted: #9db2cf;
-        --accent: #38bdf8;
-        --accent-2: #6366f1;
+      :root{
+        --bg-1:#001122; --bg-2:#042033; --glass: rgba(255,255,255,0.04);
+        --accent1:#06b6d4; --accent2:#0ea5e9; --accent3:#7c3aed;
+        --muted: #9fb6c8; --text:#eaf6ff; --card:#06203366;
       }
-
-      * { box-sizing: border-box; }
-      html { scroll-behavior: smooth; }
-      body {
-        margin: 0;
-        font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
-        background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.2), transparent 30%), var(--bg);
-        color: var(--text);
-        min-height: 100vh;
+      *{box-sizing:border-box}
+      html,body{height:100%}
+      body{
+        margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;
+        background: radial-gradient(800px 400px at 10% 10%, rgba(6,182,212,0.08), transparent), linear-gradient(180deg,var(--bg-1),var(--bg-2));
+        color:var(--text); -webkit-font-smoothing:antialiased;
       }
+      .container{max-width:1100px;margin:28px auto;padding:20px}
+      .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px}
+      .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+      .logo{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;color:white;font-weight:700;background:linear-gradient(135deg,var(--accent1),var(--accent3));box-shadow:0 12px 40px rgba(6,182,212,0.12)}
+      .tag{color:var(--muted);font-size:0.95rem}
 
-      a { color: inherit; text-decoration: none; }
+      /* layout */
+      .hero{display:grid;grid-template-columns:1fr 420px;gap:22px;margin-top:18px;align-items:start}
+      .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.06);backdrop-filter:blur(14px);padding:22px;border-radius:18px}
+      .hero-left{padding:28px;border-radius:20px}
+      h1{font-size:clamp(1.6rem,3.6vw,2.8rem);margin:0 0 8px}
+      p.lead{color:var(--muted);margin:0 0 18px}
+      .actions{display:flex;gap:12px;flex-wrap:wrap}
+      .btn{padding:12px 16px;border-radius:12px;border:0;cursor:pointer;font-weight:700}
+      .btn-primary{background:linear-gradient(90deg,var(--accent2),var(--accent3));color:white}
+      .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--text)}
 
-      .page {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 24px 20px 56px;
-      }
+      /* right visual */
+      .hero-right{display:flex;flex-direction:column;gap:14px}
+      .visual{min-height:300px;border-radius:16px;padding:14px;position:relative;overflow:hidden;background:linear-gradient(180deg, rgba(6,182,212,0.06), rgba(124,58,237,0.04))}
+      .visual::after{content:"";position:absolute;right:-60px;top:-40px;width:180px;height:180px;border-radius:50%;background:rgba(6,182,212,0.06);filter:blur(30px)}
 
-      .topbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 0 24px;
-      }
+      /* Task tracker */
+      .tracker{margin-top:20px}
+      .form-row{display:grid;grid-template-columns:1fr 180px 160px;gap:12px}
+      .field{display:flex;flex-direction:column;gap:8px}
+      label{font-size:0.85rem;color:var(--muted)}
+      input[type=text], input[type=date], select{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:10px;color:var(--text)}
+      .submit-row{display:flex;gap:8px;align-items:center;margin-top:12px}
 
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-weight: 700;
-        letter-spacing: 0.02em;
-      }
+      .tasks{margin-top:18px;display:flex;flex-direction:column;gap:10px}
+      .task{display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04)}
+      .task .meta{display:flex;flex-direction:column;font-size:0.92rem}
+      .task .meta small{color:var(--muted)}
+      .task .actions{margin-left:auto;display:flex;gap:8px}
 
-      .brand-mark {
-        width: 38px;
-        height: 38px;
-        border-radius: 12px;
-        display: grid;
-        place-items: center;
-        background: linear-gradient(135deg, var(--accent), var(--accent-2));
-        box-shadow: 0 12px 30px rgba(56, 189, 248, 0.24);
-      }
+      /* glass toggle checkbox */
+      .toggle{position:relative;width:46px;height:26px;border-radius:999px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.06);display:inline-block}
+      .toggle input{appearance:none;-webkit-appearance:none;width:100%;height:100%;margin:0;padding:0;border-radius:999px;background:transparent;cursor:pointer}
+      .toggle input::before{content:"";position:absolute;left:4px;top:3px;width:20px;height:20px;border-radius:50%;background:linear-gradient(180deg,white,rgba(255,255,255,0.9));box-shadow:0 6px 18px rgba(6,182,212,0.12);transform:translateX(0);transition:transform .18s}
+      .toggle input:checked::before{transform:translateX(20px);background:linear-gradient(90deg,var(--accent2),var(--accent3))}
 
-      .nav-links {
-        display: flex;
-        gap: 18px;
-        color: var(--muted);
-        font-size: 0.95rem;
-      }
+      /* flow modal */
+      .modal-backdrop{position:fixed;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.45),rgba(0,0,0,0.6));display:none;align-items:center;justify-content:center;padding:20px;z-index:80}
+      .modal{width:100%;max-width:540px;background:linear-gradient(180deg, rgba(10,18,30,0.9), rgba(6,12,22,0.85));border:1px solid rgba(255,255,255,0.06);padding:18px;border-radius:14px}
+      .modal h3{margin:0 0 6px}
+      .list-flow{margin-top:12px;display:flex;flex-direction:column;gap:8px}
 
-      .hero {
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 24px;
-        align-items: center;
-        padding: 30px 0 36px;
-      }
+      /* chat */
+      .chat-btn{position:fixed;right:20px;bottom:18px;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#001;z-index:100;padding:14px 16px;border-radius:999px;border:0;box-shadow:0 16px 36px rgba(3,10,18,0.5);cursor:pointer}
+      .chat-modal{position:fixed;right:18px;bottom:78px;width:340px;max-height:70vh;border-radius:14px;overflow:hidden;display:none;flex-direction:column;z-index:110;border:1px solid rgba(255,255,255,0.06);background:linear-gradient(180deg, rgba(2,8,20,0.95), rgba(4,12,30,0.95))}
+      .chat-header{padding:12px;border-bottom:1px solid rgba(255,255,255,0.03);display:flex;align-items:center;gap:8px}
+      .chat-body{padding:12px;overflow:auto;flex:1;display:flex;flex-direction:column;gap:8px}
+      .msg{padding:10px;border-radius:10px;max-width:85%}
+      .msg.user{align-self:flex-end;background:linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));}
+      .msg.bot{align-self:flex-start;background:linear-gradient(90deg, rgba(6,182,212,0.08), rgba(99,102,241,0.04));}
+      .chat-input{display:flex;border-top:1px solid rgba(255,255,255,0.03)}
+      .chat-input input{flex:1;padding:10px;border:0;background:transparent;color:var(--text)}
+      .chat-input button{padding:10px;border:0;background:transparent;color:var(--accent2);cursor:pointer}
 
-      .hero-card, .info-card, .cta-card {
-        background: var(--panel);
-        border: 1px solid rgba(255,255,255,0.08);
-        backdrop-filter: blur(18px);
-        box-shadow: 0 24px 60px rgba(2, 8, 23, 0.3);
-      }
+      footer{margin-top:26px;text-align:center;color:var(--muted);font-size:0.92rem}
 
-      .hero-card {
-        padding: 34px;
-        border-radius: 28px;
-      }
-
-      .pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 12px;
-        border-radius: 999px;
-        background: rgba(56, 189, 248, 0.12);
-        color: #8fe6ff;
-        font-size: 0.9rem;
-        margin-bottom: 16px;
-      }
-
-      h1 {
-        font-size: clamp(2.2rem, 4.4vw, 3.6rem);
-        line-height: 1.05;
-        margin: 0 0 16px;
-      }
-
-      .hero p {
-        color: var(--muted);
-        font-size: 1.04rem;
-        line-height: 1.7;
-        margin: 0 0 22px;
-      }
-
-      .actions {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
-
-      button, .ghost-link {
-        border: 0;
-        cursor: pointer;
-        font: inherit;
-      }
-
-      .primary-btn, .secondary-btn {
-        padding: 12px 16px;
-        border-radius: 999px;
-        transition: transform 180ms ease, opacity 180ms ease;
-      }
-
-      .primary-btn {
-        background: linear-gradient(135deg, var(--accent), var(--accent-2));
-        color: white;
-        font-weight: 700;
-      }
-
-      .secondary-btn {
-        background: rgba(255,255,255,0.06);
-        color: var(--text);
-        border: 1px solid rgba(255,255,255,0.1);
-      }
-
-      .primary-btn:hover, .secondary-btn:hover, .ghost-link:hover {
-        transform: translateY(-1px);
-      }
-
-      .hero-visual {
-        border-radius: 28px;
-        padding: 20px;
-        min-height: 320px;
-        background: linear-gradient(160deg, rgba(56, 189, 248, 0.2), rgba(99, 102, 241, 0.2));
-        position: relative;
-        overflow: hidden;
-      }
-
-      .hero-visual::before, .hero-visual::after {
-        content: "";
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(30px);
-        opacity: 0.7;
-      }
-
-      .hero-visual::before {
-        width: 180px;
-        height: 180px;
-        background: rgba(56, 189, 248, 0.4);
-        top: -20px;
-        right: -20px;
-      }
-
-      .hero-visual::after {
-        width: 220px;
-        height: 220px;
-        background: rgba(99, 102, 241, 0.32);
-        bottom: -30px;
-        left: -30px;
-      }
-
-      .chip-stack {
-        position: relative;
-        z-index: 1;
-        display: grid;
-        gap: 14px;
-        margin-top: 24px;
-      }
-
-      .chip {
-        padding: 14px 16px;
-        border-radius: 16px;
-        background: rgba(6, 13, 31, 0.65);
-        border: 1px solid rgba(255,255,255,0.08);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .section-title {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-      }
-
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
-        margin-top: 24px;
-      }
-
-      .info-card {
-        padding: 20px;
-        border-radius: 20px;
-      }
-
-      .info-card h3 {
-        margin: 8px 0 8px;
-      }
-
-      .info-card p {
-        margin: 0;
-        color: var(--muted);
-        line-height: 1.6;
-      }
-
-      .cta-card {
-        margin-top: 24px;
-        border-radius: 24px;
-        padding: 28px;
-        text-align: center;
-      }
-
-      .cta-card p {
-        color: var(--muted);
-        max-width: 700px;
-        margin: 10px auto 0;
-        line-height: 1.7;
-      }
-
-      footer {
-        text-align: center;
-        color: var(--muted);
-        padding-top: 20px;
-        font-size: 0.95rem;
-      }
-
-      @media (max-width: 900px) {
-        .hero { grid-template-columns: 1fr; }
-        .grid { grid-template-columns: 1fr; }
-      }
-
-      @media (max-width: 640px) {
-        .page { padding: 18px 14px 40px; }
-        .topbar { flex-direction: column; gap: 10px; align-items: flex-start; }
-        .nav-links { gap: 12px; flex-wrap: wrap; }
-        .hero-card { padding: 24px; }
-        .cta-card { padding: 22px; }
-      }
+      @media(max-width:880px){.hero{grid-template-columns:1fr}.hero-right{order:2}.hero-left{order:1}.form-row{grid-template-columns:1fr}.chat-modal{right:10px;left:10px;width:auto}}
     </style>
   </head>
   <body>
-    <div class="page">
+    <div class="container">
       <header class="topbar">
-        <a class="brand" href="#top">
-          <span class="brand-mark">✦</span>
-          <span>Blue Current</span>
-        </a>
-        <nav class="nav-links" aria-label="main navigation">
-          <a href="#features">Features</a>
-          <a href="#launch">Launch</a>
-        </nav>
+        <div class="brand">
+          <div class="logo">BC</div>
+          <div>
+            <div style="font-size:1rem">Blue Current</div>
+            <div class="tag">Your Polytechnic Flow, Simplified.</div>
+          </div>
+        </div>
+        <div class="tag">Focus • Flow • Finish</div>
       </header>
 
-      <main id="top">
-        <section class="hero">
-          <div class="hero-card">
-            <div class="pill">⚡ One-page launch experience</div>
-            <h1>Turn your idea into a polished landing page in one file.</h1>
-            <p>This experience is designed to feel modern, fast, and ready to share without a local dev server. It opens as a clean, single-page site that is easy to host anywhere.</p>
+      <main class="hero">
+        <section class="card hero-left">
+          <div style="display:flex;flex-direction:column">
+            <div class="pill" style="display:none">⚡ MVP</div>
+            <h1>Blue Current</h1>
+            <p class="lead">Your Polytechnic Flow, Simplified. Plan smarter, study with intent, and keep momentum.</p>
             <div class="actions">
-              <button class="primary-btn" data-scroll="#launch">Launch Now</button>
-              <button class="secondary-btn" data-scroll="#features">See Features</button>
+              <button id="genFlow" class="btn btn-primary">Generate My Flow</button>
+              <button id="openTracker" class="btn btn-ghost">Open Task Tracker</button>
             </div>
           </div>
 
-          <div class="hero-visual" aria-label="preview panel">
-            <div class="chip-stack">
-              <div class="chip"><span>Study Flow</span><strong>Ready</strong></div>
-              <div class="chip"><span>Task Tracker</span><strong>Live</strong></div>
-              <div class="chip"><span>Single File</span><strong>Hosted</strong></div>
+          <section id="tracker" class="tracker" style="margin-top:18px">
+            <div class="card">
+              <h3 style="margin:0 0 8px">Task Tracker</h3>
+              <form id="taskForm">
+                <div class="form-row">
+                  <div class="field">
+                    <label for="desc">Task Description</label>
+                    <input id="desc" name="description" type="text" placeholder="e.g. Finish lab report" required />
+                  </div>
+                  <div class="field">
+                    <label for="deadline">Target Deadline</label>
+                    <input id="deadline" name="deadline" type="date" />
+                  </div>
+                  <div class="field">
+                    <label for="effort">Effort Required</label>
+                    <select id="effort" name="effort">
+                      <option>Quick</option>
+                      <option>Moderate</option>
+                      <option>Deep Work</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="submit-row">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="button" id="clearForm" class="btn btn-ghost">Clear</button>
+                  <div id="formMsg" style="margin-left:10px;color:var(--muted)"></div>
+                </div>
+              </form>
+
+              <div class="tasks" id="tasks"></div>
+            </div>
+          </section>
+        </section>
+
+        <aside class="hero-right">
+          <div class="visual card">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <strong style="font-size:1.05rem">Study Flow</strong>
+                <div style="color:var(--muted);font-size:0.95rem">AI-powered schedule preview</div>
+              </div>
+            </div>
+            <div style="margin-top:18px;color:var(--muted)">Quick cards to inspire your day. Use "Generate My Flow" to simulate AI output.</div>
+            <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+              <div style="padding:10px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)">Focus</div>
+              <div style="padding:10px;border-radius:10px;background:linear-gradient(90deg,rgba(6,182,212,0.06),rgba(124,58,237,0.04));border:1px solid rgba(255,255,255,0.03)">Review</div>
+              <div style="padding:10px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)">Break</div>
             </div>
           </div>
-        </section>
 
-        <section id="features" class="grid" aria-label="key features">
-          <article class="info-card">
-            <h3>Instantly shareable</h3>
-            <p>Built as a single page with no local app dependency, so it works well for demos, portfolios, and quick launches.</p>
-          </article>
-          <article class="info-card">
-            <h3>Clean structure</h3>
-            <p>The layout is simple, focused, and designed to feel like a premium product page rather than a development preview.</p>
-          </article>
-          <article class="info-card">
-            <h3>Easy to deploy</h3>
-            <p>Drop it onto static hosting or a simple web server and it will open as a complete experience with no localhost friction.</p>
-          </article>
-        </section>
-
-        <section id="launch" class="cta-card">
-          <h2 class="section-title">Ready to go live</h2>
-          <p>Use this page as your public-facing entry point, then publish the build output to your preferred static host. It is now shaped as a single, polished page instead of a local development view.</p>
-        </section>
+          <div class="card" style="margin-top:12px;">
+            <h4 style="margin:0 0 8px">Pro Tip</h4>
+            <p style="margin:0;color:var(--muted)">Break tasks into 25–50 minute focused sessions and track completion below.</p>
+          </div>
+        </aside>
       </main>
 
-      <footer>© <span id="year"></span> Blue Current. All rights reserved.</footer>
+      <footer>© <span id="year"></span> Blue Current</footer>
+    </div>
+
+    <!-- Flow Modal -->
+    <div id="flowModal" class="modal-backdrop">
+      <div class="modal">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h3>AI Flow — Today's Schedule</h3>
+          <button id="closeFlow" class="btn btn-ghost">Close</button>
+        </div>
+        <div class="list-flow" id="flowList">
+          <!-- generated items -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat -->
+    <button id="chatBtn" class="chat-btn">Chat Now</button>
+    <div id="chatModal" class="chat-modal">
+      <div class="chat-header">
+        <strong>Blue Current AI</strong>
+        <div style="margin-left:auto;color:var(--muted);font-size:0.85rem">Knowledge-based</div>
+      </div>
+      <div id="chatBody" class="chat-body"></div>
+      <div class="chat-input">
+        <input id="chatInput" placeholder="Ask about study plans, deadlines..." />
+        <button id="chatSend">Send</button>
+      </div>
     </div>
 
     <script>
-      document.getElementById('year').textContent = new Date().getFullYear();
-      document.querySelectorAll('[data-scroll]').forEach((button) => {
-        button.addEventListener('click', () => {
-          const target = button.getAttribute('data-scroll');
-          if (target) {
-            document.querySelector(target)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
+      // utilities & state
+      const webhookURL = 'https://n8ngc.codeblazar.org/form/e0f81978-07e2-42d3-a186-4cb8470cd834';
+      const tasksEl = document.getElementById('tasks');
+      let tasks = JSON.parse(localStorage.getItem('bc_tasks')||'[]');
+
+      function saveTasks(){ localStorage.setItem('bc_tasks', JSON.stringify(tasks)); renderTasks(); }
+
+      function renderTasks(){
+        tasksEl.innerHTML = '';
+        if(tasks.length===0){ tasksEl.innerHTML = '<div style="color:var(--muted)">No tasks yet. Add one above.</div>'; return }
+        tasks.forEach((t, idx)=>{
+          const wrap = document.createElement('div'); wrap.className='task';
+
+          const toggle = document.createElement('label'); toggle.className='toggle';
+          const cb = document.createElement('input'); cb.type='checkbox'; cb.checked = !!t.done;
+          cb.addEventListener('change', ()=>{ tasks[idx].done = cb.checked; saveTasks(); });
+          toggle.appendChild(cb);
+
+          const meta = document.createElement('div'); meta.className='meta';
+          const title = document.createElement('div'); title.textContent = t.description; title.style.textDecoration = t.done ? 'line-through' : 'none';
+          const small = document.createElement('small'); small.textContent = (t.deadline ? ('Due: '+t.deadline+' • ') : '') + t.effort;
+          meta.appendChild(title); meta.appendChild(small);
+
+          const actions = document.createElement('div'); actions.className='actions';
+          const del = document.createElement('button'); del.className='btn btn-ghost'; del.textContent='Delete'; del.addEventListener('click', ()=>{ tasks.splice(idx,1); saveTasks(); });
+          actions.appendChild(del);
+
+          wrap.appendChild(toggle); wrap.appendChild(meta); wrap.appendChild(actions);
+          tasksEl.appendChild(wrap);
         });
+      }
+
+      // task form handling + webhook POST
+      const form = document.getElementById('taskForm');
+      const formMsg = document.getElementById('formMsg');
+      form.addEventListener('submit', async (e)=>{
+        e.preventDefault();
+        const data = {
+          description: form.description.value.trim(),
+          deadline: form.deadline.value || null,
+          effort: form.effort.value
+        };
+        if(!data.description){ formMsg.textContent='Describe the task.'; return }
+        // optimistic add
+        tasks.push({...data, done:false}); saveTasks();
+        formMsg.textContent = 'Sending...';
+        try{
+          const res = await fetch(webhookURL, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+          if(!res.ok) throw new Error('Network error');
+          formMsg.textContent='Saved to webhook.';
+        }catch(err){
+          formMsg.textContent='Could not reach webhook — saved locally.';
+        }
+        setTimeout(()=>formMsg.textContent='',2500);
+        form.reset();
       });
+      document.getElementById('clearForm').addEventListener('click', ()=>{ form.reset(); formMsg.textContent=''; });
+
+      // flow modal
+      const flowModal = document.getElementById('flowModal'); const flowList = document.getElementById('flowList');
+      document.getElementById('genFlow').addEventListener('click', ()=>{
+        // hardcoded AI-styled schedule
+        const schedule = [
+          '08:30 AM: Quick review — Lecture notes (30m)',
+          '10:00 AM: Assignment A — Draft solution (90m)',
+          '12:00 PM: Lunch & Short Break (45m)',
+          '02:00 PM: Revision B — Problem sets (120m)',
+          '05:00 PM: Summary & Plan tomorrow (30m)'
+        ];
+        flowList.innerHTML = '';
+        schedule.forEach(s=>{ const el = document.createElement('div'); el.textContent = s; el.style.padding='10px'; el.style.borderRadius='8px'; el.style.background='rgba(255,255,255,0.02)'; flowList.appendChild(el); });
+        flowModal.style.display='flex';
+      });
+      document.getElementById('closeFlow').addEventListener('click', ()=>flowModal.style.display='none');
+      flowModal.addEventListener('click', (e)=>{ if(e.target===flowModal) flowModal.style.display='none' });
+
+      // chat modal + knowledge base
+      const chatBtn = document.getElementById('chatBtn'); const chatModal = document.getElementById('chatModal'); const chatBody = document.getElementById('chatBody'); const chatInput = document.getElementById('chatInput');
+      chatBtn.addEventListener('click', ()=>{ chatModal.style.display = chatModal.style.display==='flex' ? 'none' : 'flex'; if(chatModal.style.display==='flex') chatInput.focus(); });
+
+      const kb = {
+        'deadline':'Set a clear deadline in your task and split work into focused blocks. Use the tracker to mark completion.',
+        'assignment':'Prioritise assignments with earliest deadlines first. Block time for drafting and revision.',
+        'revision':'Revision sessions of 60–120 minutes with active recall work best. Add "Revision" to Effort.',
+        'flow':'Use "Generate My Flow" to get a suggested schedule tailored to study windows.'
+      };
+
+      function botReply(text){ const el = document.createElement('div'); el.className='msg bot'; el.textContent = text; chatBody.appendChild(el); chatBody.scrollTop = chatBody.scrollHeight; }
+      function userMsg(text){ const el = document.createElement('div'); el.className='msg user'; el.textContent = text; chatBody.appendChild(el); chatBody.scrollTop = chatBody.scrollHeight; }
+
+      document.getElementById('chatSend').addEventListener('click', handleChat);
+      chatInput.addEventListener('keydown', (e)=>{ if(e.key==='Enter') handleChat() });
+
+      function handleChat(){ const q = chatInput.value.trim(); if(!q) return; userMsg(q); chatInput.value='';
+        // simple keyword match
+        const key = Object.keys(kb).find(k=> q.toLowerCase().includes(k));
+        if(key){ setTimeout(()=>botReply(kb[key]),500); } else { setTimeout(()=>botReply('Thanks... coming soon.'),500); }
+      }
+
+      // initial render
+      document.getElementById('year').textContent = new Date().getFullYear();
+      renderTasks();
+
+      // small helper: open tracker focus
+      document.getElementById('openTracker').addEventListener('click', ()=>{ document.getElementById('desc').focus(); window.scrollTo({top:document.getElementById('tracker').offsetTop-20,behavior:'smooth'}) });
     </script>
   </body>
 </html>
